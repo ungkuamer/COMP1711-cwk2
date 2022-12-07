@@ -11,10 +11,101 @@
 // test all possible ways the game can be won for one player
 int winGame( Game *game, char symbol ) {
 
+  int i, j, x, y, final;
+  int count = 0;
   // return 1(true) if game is won, 0(false) otherwise
   //
   // You may wish to define further functions to test different win conditions
   // Games can be won with horizontal, vertical or diagonal lines
+
+  // horizontal case
+  for (i = 0; i < boardSize; i++)
+  {
+    for (j = 0; j < boardSize; j++)
+    {
+      if (game -> board[j][i] == symbol)
+      {
+        count++;
+      }
+      else
+      {
+        count = 0;
+      }
+    }
+    //resets when jumping row
+    final = count;
+    count = 0;
+  }
+
+  if (final == (game -> winLength))
+  {
+    return 1;
+  }
+
+  // vertical case
+  count = 0;
+  for (i = 0; i < boardSize; i++)
+  {
+    for (j = 0; j < boardSize; j++)
+    {
+      if (game -> board[i][j] == symbol)
+      {
+        count++;
+      }
+      else
+      {
+        count = 0;
+      }
+    }
+    //resets when jumping colomn
+    final = count;
+    count = 0;
+  }
+
+  if (final == (game -> winLength))
+  {
+    return 1;
+  }
+
+  // diagonal case
+  //    1 - first diag
+  count = 0
+  for (i = 0; i < boardSize; i++)
+  {
+    if (game -> board[i][j] == symbol)
+    {
+      count++;
+    }
+    else
+    {
+      count = 0;
+    }
+  }
+
+  if (count == (game -> winLength))
+  {
+    return 1;
+  }
+
+  //    2 - second diag
+  count = 0
+  for (i = 0; i < boardSize; i++)
+  {
+    y = boardSize-1-i;
+    if (game -> board[i][y] == symbol)
+    {
+      count++;
+    }
+    else
+    {
+      count = 0;
+    }
+  }
+
+  if (count == (game -> winLength))
+  {
+    return 1;
+  }
 
   return 0;  // continue
 }
@@ -26,4 +117,3 @@ int drawGame( Game *game ) {
 
   return 0; // continue
 }
-

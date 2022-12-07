@@ -17,9 +17,9 @@ Game *initGame( int boardSize, int winLength ) {
   // allocate the Game data structure
   // board values shaould be set to '.' (unused location)
   max_turn = boardSize ** 2;
-  for (i = 0; i < boardSize; ++i)
+  for (i = 0; i < boardSize; i++)
   {
-    for (j = 0; j < boardSize; ++j)
+    for (j = 0; j < boardSize; j++)
     {
       game -> board[i][j] = ".";
     }

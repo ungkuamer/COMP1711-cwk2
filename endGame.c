@@ -11,7 +11,7 @@
 // test all possible ways the game can be won for one player
 int winGame( Game *game, char symbol ) {
 
-  int i, j, x, y, final;
+  int i, j, x, y;
   int count = 0;
   // return 1(true) if game is won, 0(false) otherwise
   //
@@ -32,14 +32,12 @@ int winGame( Game *game, char symbol ) {
         count = 0;
       }
     }
-    //resets when jumping row
-    final = count;
+    // checks and resets when jumping row
+    if (count == (game -> winLength))
+    {
+      return 1;
+    }
     count = 0;
-  }
-
-  if (final == (game -> winLength))
-  {
-    return 1;
   }
 
   // vertical case
@@ -57,9 +55,12 @@ int winGame( Game *game, char symbol ) {
         count = 0;
       }
     }
-    //resets when jumping colomn
-    final = count;
-    count = 0;
+    // checks and resets when jumping colomn
+    if (count == (game -> winLength))
+    {
+      return 1;
+    }
+    count = 0; 
   }
 
   if (final == (game -> winLength))

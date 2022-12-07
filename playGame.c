@@ -18,7 +18,7 @@ void playGame( Game *game ) {
   showGame( game );
   
   // Your game should be controlled by an outer loop
-  for (i = 0; i < (game -> maxTurns); ++i)
+  for (i = 0; i < (game -> maxTurns); i++)
   {
     current_turn = game -> turns;
     player = current_turn%2;
@@ -36,10 +36,13 @@ void playGame( Game *game ) {
       if_success = makeMove(game, symbols[player]);
     }
 
+    winGame(game, symbols[player]);
+    drawGame(game);
+
 
     // After each completed move display the board 
     showGame( game );
-    ++current_turn;
+    current_turn++;
 
   }
 

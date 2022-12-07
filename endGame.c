@@ -114,6 +114,15 @@ int winGame( Game *game, char symbol ) {
 int drawGame( Game *game ) {
 
   // return 1(true) if game is drawn, 0(false) otherwise
-
-  return 0; // continue
+  for (i = 0; i < boardSize; i++)
+  {
+    for (j = 0; j < boardSize; j++)
+    {
+      if (game -> board[i][j] == ".")
+      {
+        return 0; // continue
+      }
+    }
+  }
+  return 1; 
 }

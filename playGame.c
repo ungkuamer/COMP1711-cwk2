@@ -20,7 +20,6 @@ void playGame( Game *game ) {
 
   // starting board
   printf("New game starting\n");
-  printf("Win length is %i", game->winLength);
   showGame( game );
   
   // Your game should be controlled by an outer loop
@@ -30,19 +29,21 @@ void playGame( Game *game ) {
     player = current_turn%2;
     int if_success = 0;
 
-    printf("player number %i\n", player);
+    // Request a move from the next player and check it is valid (an unused square within the board)
     printf("Player %c: Enter your move as row column values:\n",symbols[player]);
     if_success = makeMove(game, symbols[player]);
 
-    while (if_success == 0)
+    // If the move is invalid you should repeat the request for the current player
+    while (if_success == 0) 
     {
       printf("Move rejected. Please try again\n");
       printf("Player %c: Enter your move as row column values:\n",symbols[player]);
       if_success = makeMove(game, symbols[player]);
     }
 
-    showGame( game );
+    showGame( game ); // After each completed move display the board
     
+    // After each valid move you can test for win or draw using functions you implement in endGame.c
     if (winGame(game, symbols[player]) == 1)
     {
       printf("Player %c has won\n",symbols[player]);
@@ -57,23 +58,8 @@ void playGame( Game *game ) {
 
     current_turn++;
   }
-
-   
-  // Request a move from the next player and check it is valid (an unused square within the board)
-  //printf("Player %c: Enter your move as row column values:\n",symbols[player]); // use this to request the player move
-
-  // If the move is invalid you should repeat the request for the current player
-  //printf("Move rejected. Please try again\n"); // use this message if move cannot be made. You must repeat the request for a move
-
-  // If the move is valid update the board
   
-  // After each completed move display the board 
-
-  // After each valid move you can test for win or draw using functions you implement in endGame.c
-  //printf("Player %c has won\n",symbols[player]); // use to announce a winner - game is over
-  //printf("Match is drawn\n"); // use to announce a draw - game is over
-  
-  return;
+  return ;
 }
 
 /*
@@ -110,7 +96,6 @@ int makeMove( Game *game, char symbol ) {
   {
     row = atoi(&player_input[0]);
     column = atoi(&player_input[2]);
-    printf("%i %i", row, column);
 
     if (row < 0 || row > 2)
     {
@@ -119,7 +104,7 @@ int makeMove( Game *game, char symbol ) {
 
     if (game->board[column][row] == '.') // test that the chosen location is a valid empty space
     {
-      game->board[column][row] = symbol;
+      game->board[column][row] = symbol;  // If the move is valid update the board
       return 1; // if we accept then update the board and return 1
     }
     else

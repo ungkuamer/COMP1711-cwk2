@@ -94,7 +94,8 @@ int winGame( Game *game, char symbol ) {
 }
 
 // test for a draw
-int drawGame( Game *game ) {
+int drawGame( Game *game )
+{
 
   int i, j;
 
@@ -107,6 +108,7 @@ int drawGame( Game *game ) {
         return 0;
       }
     }
+  }
   
   return 1; // no more empty space
 }

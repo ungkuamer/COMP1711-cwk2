@@ -30,9 +30,9 @@ int main( int argc, char *argv[] ) {
   {
     exit(0);
   }
-  showGame(game);
+
   // play a full game
-  //playGame(game);
+  playGame(game);
 
   free( game ); // free heap memory that was used
 

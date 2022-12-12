@@ -2,8 +2,8 @@
 # code details
 
 EXE = ./bin/tictactoe
-SRC = main.c initGame.c playGame.c               # ** list source code here **
-OBJ = main.o initGame.o playGame.o                # ** list object code here **
+SRC = main.c initGame.c playGame.c endGame.c # ** list source code here **
+OBJ = main.o initGame.o playGame.o endGame.o # ** list object code here **
 
 # generic build details
 
@@ -28,9 +28,10 @@ clean:
 	rm -f $(OBJ) $(EXE)
 
 # dependencies
-main.o: main.c game.h initGame.h
-initGame.o: initGame.h game.h initGame.c
-playGame.o: initGame.c game.h initGame.h playGame.c playGame.h
+main.o: main.c game.h initGame.h playGame.c
+initGame.o: initGame.h game.h initGame.c playGame.h playGame.c
+playGame.o: initGame.c game.h initGame.h playGame.c playGame.h initGame.c
+endgame.o: game.h endGame.h endGame.c
 
 #
 # ** put code dependencies here **

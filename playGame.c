@@ -3,6 +3,7 @@
 
 #include "game.h"
 #include "playGame.h"
+#include "endGame.h"
 
 /*
  * Controls the game logic from start to end
@@ -45,13 +46,40 @@ void playGame( Game *game ) {
  */
 
 void showGame( Game *game ) {
+  int i, j;
 
   printf("\n");
-  printf("      0  1  2\n");
+  printf("      ");
+  for (i = 0; i < game->boardSize; i++)
+  {
+    if (i == (game->boardSize)-1)
+    {
+      printf("%i\n", i);
+    }
+    else
+    {
+      printf("%i  ", i);
+    }
+  }
   printf("\n");
-  printf(" 0    %c  %c  %c\n",game->board[0][0],game->board[0][1],game->board[0][2]);
-  printf(" 1    %c  %c  %c\n",game->board[1][0],game->board[1][1],game->board[1][2]);
-  printf(" 2    %c  %c  %c\n",game->board[2][0],game->board[2][1],game->board[2][2]);
+
+  for (i = 0; i < game->boardSize; i++)
+  {
+
+    printf(" %i    ", i);
+
+    for (j = 0; j < game->boardSize; j++)
+    {
+      if (j == (game->boardSize)-1)
+      {
+        printf("%c\n", game->board[i][j]);
+      }
+      else
+      {
+        printf("%c  ", game->board[i][j]);
+      }
+    }
+  }
   printf("\n");
 
   return;

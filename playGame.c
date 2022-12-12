@@ -47,13 +47,13 @@ void playGame( Game *game ) {
     if (winGame(game, symbols[player]) == 1)
     {
       printf("Player %c has won\n",symbols[player]);
-      exit(0); 
+      return; 
     }
 
     if (drawGame(game) == 1)
     {
       printf("Match is drawn\n");
-      exit(0);
+      return;
     }
 
     current_turn++;
@@ -102,9 +102,9 @@ int makeMove( Game *game, char symbol ) {
       return 0;
     }
 
-    if (game->board[column][row] == '.') // test that the chosen location is a valid empty space
+    if (game->board[row][column] == '.') // test that the chosen location is a valid empty space
     {
-      game->board[column][row] = symbol;  // If the move is valid update the board
+      game->board[row][column] = symbol;  // If the move is valid update the board
       return 1; // if we accept then update the board and return 1
     }
     else

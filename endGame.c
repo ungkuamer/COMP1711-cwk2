@@ -94,6 +94,7 @@ int winGame( Game *game, char symbol ) {
 }
 
 // test for a draw
+// created by Ungku Amer Ungku Aziz sc22uaib
 int drawGame( Game *game )
 {
 
